@@ -1,58 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Biblioteca API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API REST desenvolvida em Laravel para gerenciamento de uma biblioteca.
 
-## About Laravel
+O projeto foi desenvolvido para a disciplina de Desenvolvimento Web III e disponibiliza operações de cadastro, consulta, atualização e exclusão para autores, categorias, livros e usuários.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tecnologias utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP 8.4
+- Laravel 13
+- MySQL
+- Laravel Sanctum
+- REST API
+- JSON
+- Composer
+- Postman
+- Git
+- GitHub
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Funcionalidades
 
-## Learning Laravel
+A API possui os seguintes recursos:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Cadastro e gerenciamento de autores
+- Cadastro e gerenciamento de categorias
+- Cadastro e gerenciamento de livros
+- Cadastro e gerenciamento de usuários
+- Autenticação de usuários utilizando Laravel Sanctum
+- Relacionamento entre livros, autores e categorias
+- Respostas no formato JSON
+- Operações GET, POST, PUT e DELETE
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Estrutura dos recursos
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Autores
 
-## Agentic Development
+| Método | Endpoint | Descrição |
+|---|---|---|
+| GET | `/api/autores` | Lista todos os autores |
+| GET | `/api/autores/{id}` | Consulta um autor |
+| POST | `/api/autores` | Cadastra um autor |
+| PUT | `/api/autores/{id}` | Atualiza um autor |
+| DELETE | `/api/autores/{id}` | Exclui um autor |
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Categorias
 
-```bash
-composer require laravel/boost --dev
+| Método | Endpoint | Descrição |
+|---|---|---|
+| GET | `/api/categorias` | Lista todas as categorias |
+| GET | `/api/categorias/{id}` | Consulta uma categoria |
+| POST | `/api/categorias` | Cadastra uma categoria |
+| PUT | `/api/categorias/{id}` | Atualiza uma categoria |
+| DELETE | `/api/categorias/{id}` | Exclui uma categoria |
 
-php artisan boost:install
-```
+### Livros
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+| Método | Endpoint | Descrição |
+|---|---|---|
+| GET | `/api/livros` | Lista todos os livros |
+| GET | `/api/livros/{id}` | Consulta um livro |
+| POST | `/api/livros` | Cadastra um livro |
+| PUT | `/api/livros/{id}` | Atualiza um livro |
+| DELETE | `/api/livros/{id}` | Exclui um livro |
 
-## Contributing
+Ao consultar os livros, a API também retorna os dados relacionados ao autor e à categoria.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Exemplo de cadastro de livro:
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```json
+{
+    "titulo": "Dom Casmurro",
+    "isbn": "978-85-01-00002-8",
+    "autor_id": 1,
+    "categoria_id": 1
+}
