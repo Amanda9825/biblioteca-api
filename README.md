@@ -4,11 +4,18 @@ API REST desenvolvida em Laravel para gerenciamento de uma biblioteca.
 
 O projeto foi desenvolvido para a disciplina de Desenvolvimento Web III e disponibiliza operações de cadastro, consulta, atualização e exclusão para autores, categorias, livros e usuários.
 
+## API pública
+
+A API está disponível em:
+
+https://biblioteca-api-wg3j.onrender.com
+
 ## Tecnologias utilizadas
 
 - PHP 8.4
 - Laravel 13
-- MySQL
+- MySQL (desenvolvimento local)
+- PostgreSQL (produção - Neon)
 - Laravel Sanctum
 - REST API
 - JSON
@@ -16,6 +23,8 @@ O projeto foi desenvolvido para a disciplina de Desenvolvimento Web III e dispon
 - Postman
 - Git
 - GitHub
+- Render
+- Neon
 
 ## Funcionalidades
 
@@ -29,6 +38,8 @@ A API possui os seguintes recursos:
 - Relacionamento entre livros, autores e categorias
 - Respostas no formato JSON
 - Operações GET, POST, PUT e DELETE
+- Persistência de dados em banco de dados relacional
+- Migrations para criação e atualização da estrutura do banco
 
 ## Estrutura dos recursos
 
@@ -73,3 +84,141 @@ Exemplo de cadastro de livro:
     "autor_id": 1,
     "categoria_id": 1
 }
+```
+
+### Usuários
+
+Os endpoints de usuários são protegidos por autenticação utilizando Laravel Sanctum.
+
+| Método | Endpoint | Descrição |
+|---|---|---|
+| GET | `/api/usuarios` | Lista os usuários autenticados |
+| GET | `/api/usuarios/{id}` | Consulta um usuário |
+| POST | `/api/usuarios` | Cadastra um usuário |
+| PUT | `/api/usuarios/{id}` | Atualiza um usuário |
+| DELETE | `/api/usuarios/{id}` | Exclui um usuário |
+
+### Login
+
+Para autenticação, a API disponibiliza:
+
+| Método | Endpoint | Descrição |
+|---|---|---|
+| POST | `/api/login` | Realiza o login e gera um token de acesso |
+
+Exemplo:
+
+```json
+{
+    "email": "usuario.teste@gmail.com",
+    "senha": "123456"
+}
+```
+
+O token retornado no login deve ser enviado nas requisições protegidas utilizando o cabeçalho:
+
+```text
+Authorization: Bearer SEU_TOKEN
+```
+
+## Banco de dados
+
+O projeto utiliza banco de dados relacional.
+
+No desenvolvimento local foi utilizado MySQL.
+
+No ambiente de produção foi utilizado PostgreSQL através do serviço Neon.
+
+A estrutura do banco é criada utilizando Laravel Migrations.
+
+Principais entidades:
+
+- autores
+- categorias
+- livros
+- usuarios
+- personal_access_tokens
+
+A tabela `livros` possui relacionamentos com `autores` e `categorias`.
+
+## Autenticação
+
+A autenticação da API utiliza Laravel Sanctum.
+
+As rotas de usuários são protegidas pelo middleware:
+
+```text
+auth:sanctum
+```
+
+Usuários não autenticados recebem uma resposta HTTP `401`.
+
+## Testes
+
+A API foi desenvolvida e testada utilizando Postman.
+
+Foram realizados testes das operações:
+
+- GET
+- POST
+- PUT
+- DELETE
+- Login
+- Autenticação com Bearer Token
+- Relacionamento entre livros, autores e categorias
+
+## Como executar o projeto localmente
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/Amanda9825/biblioteca-api.git
+```
+
+Entre na pasta:
+
+```bash
+cd biblioteca-api
+```
+
+Instale as dependências:
+
+```bash
+composer install
+```
+
+Configure o arquivo `.env` com os dados do banco de dados.
+
+Execute as migrations:
+
+```bash
+php artisan migrate
+```
+
+Inicie o servidor:
+
+```bash
+php artisan serve
+```
+
+A API ficará disponível localmente em:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Deploy
+
+A aplicação foi publicada utilizando Render.
+
+O banco de dados de produção utiliza PostgreSQL hospedado no Neon.
+
+URL pública:
+
+https://biblioteca-api-wg3j.onrender.com
+
+## Repositório
+
+Código-fonte disponível no GitHub:
+
+https://github.com/Amanda9825/biblioteca-api
